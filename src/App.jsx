@@ -1,14 +1,22 @@
-import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import ItemListContainer from "./components/ItemListContainer";
-
-const App = () => {
+import ItemDetailContainer from "./components/ItemDetailContainer";
+import Footer from "./components/Footer";
+console.log
+function App() {
   return (
-    <div>
+    <BrowserRouter>
       <NavBar />
-      <ItemListContainer greeting="¡Bienvenido a Cangsters! Aquí encontrarás la mejor selección de ropa para hombre, desde camisetas hasta calzado. Explora nuestras categorías y encuentra tu estilo perfecto." />
-    </div>
+      <Routes>
+        <Route path="/" element={<ItemListContainer />} />
+        <Route path="/category/:categoryId" element={<ItemListContainer />} />
+        {/* Modificamos la ruta para usar el nombre del producto */}
+        <Route path="/category/:categoryId/:productName" element={<ItemDetailContainer />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
